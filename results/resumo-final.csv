@@ -1,0 +1,7 @@
+algoritmo,ambiente de treino,ambiente de teste,timesteps médio,desvio padrão,taxa de sucesso,reward médio
+Q-learning,Determinístico,Determinístico,12.94,2.5916018212680743,1.0,8.06
+Sarsa,Determinístico,Determinístico,13.258,8.75713628990665,0.998,7.7
+Q-learning,Determinístico,Com chuva,25.584,14.12186050065642,0.996,-4.668
+Sarsa,Determinístico,Com chuva,28.114,24.702246942332998,0.982,-7.492
+Q-learning,Com chuva,Com chuva,26.34,17.92139503498542,0.992,-5.508
+Sarsa,Com chuva,Com chuva,56.242,68.09011261556263,0.82,-39.022

@@ -1,6 +1,7 @@
 # Taxi-v4 só existe a partir do gymnasium 1.3
 gymnasium>=1.3
 numpy
-matplotlib
+# tick_labels do boxplot (item 4) existe a partir do matplotlib 3.9
+matplotlib>=3.9
 pandas
 jupyter
