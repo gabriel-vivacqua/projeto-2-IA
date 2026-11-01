@@ -1,0 +1,5 @@
+algoritmo,ambiente,timesteps médios,desvio padrão dos timesteps,taxa de sucesso,reward médio,episódios no limite
+Q-learning,Determinístico,12.94,2.5916018212680743,1.0,8.06,0
+Q-learning,Com chuva,25.584,14.12186050065642,0.996,-4.668,2
+Sarsa,Determinístico,13.258,8.75713628990665,0.998,7.7,1
+Sarsa,Com chuva,28.114,24.702246942332998,0.982,-7.492,9
