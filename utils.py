@@ -46,11 +46,12 @@ def rewards_path(prefix):
     return config.RESULTS_DIR / f"rewards-{prefix}.npy"
 
 
-def run_experiments(AgentClass, rainy, n_runs=config.N_RUNS, prefix=None):
+def run_experiments(AgentClass, rainy, n_runs=config.N_RUNS, prefix=None,
+                    episodes=config.EPISODES):
     """Treina n_runs vezes (seeds de config.SEEDS) e salva q-tables e rewards.
 
     AgentClass precisa ter a interface de QLearning. Retorna a matriz de
-    rewards (n_runs x episódios).
+    rewards (n_runs x episodes).
     """
     if n_runs > len(config.SEEDS):
         raise ValueError(f"n_runs={n_runs}, mas config.SEEDS só tem {len(config.SEEDS)} seeds.")
@@ -59,11 +60,11 @@ def run_experiments(AgentClass, rainy, n_runs=config.N_RUNS, prefix=None):
     config.DATA_DIR.mkdir(exist_ok=True)
     config.RESULTS_DIR.mkdir(exist_ok=True)
 
-    rewards = np.zeros((n_runs, config.EPISODES))
+    rewards = np.zeros((n_runs, episodes))
     for i in range(n_runs):
         env = make_env(rainy)
         agent = AgentClass(env, config.ALPHA, config.GAMMA, config.EPSILON,
-                           config.EPSILON_MIN, config.EPSILON_DEC, config.EPISODES,
+                           config.EPSILON_MIN, config.EPSILON_DEC, episodes,
                            seed=config.SEEDS[i], max_steps=config.MAX_STEPS)
         with contextlib.redirect_stdout(io.StringIO()):  # esconde o contador de train()
             agent.train(str(q_table_path(prefix, i)), None)

@@ -55,7 +55,7 @@ class QLearning:
                 actions = actions + 1
                 rewards = rewards + reward
 
-                if self.max_steps is not None and actions >= self.max_steps:  # MUDANÇA
+                if truncated or (self.max_steps is not None and actions >= self.max_steps):  # MUDANÇA
                     break
 
             actions_per_episode.append(actions)

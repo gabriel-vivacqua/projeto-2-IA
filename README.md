@@ -6,14 +6,14 @@ O relatório completo, com código, gráficos e discussão, está em [`relatorio
 
 ## Integrantes
 
-- [Nome do integrante 1]
-- [Nome do integrante 2]
-- [Nome do integrante 3]
-- [Nome do integrante 4]
+- Gabriel Vivacqua
+- Rafael Santos
+- Lucas Watanabe
+- Joaquim Figueredo
 
 ## Como instalar e rodar
 
-Testado com Python 3.11, gymnasium 1.4.0 e matplotlib 3.11.
+Testado com Python 3.11 e 3.12, gymnasium 1.4.0 e matplotlib 3.11.
 
 ```bash
 pip install -r requirements.txt
@@ -36,16 +36,16 @@ projeto-2-IA/
 └── results/
     ├── rewards-{prefix}.npy            reward por episódio (5 × 5000)
     ├── avaliacao-{prefix}.csv          métricas de avaliação por q-table
-    ├── avaliacao-{algoritmo}-{det|rainy}.npz    episódios do item 4
+    ├── avaliacao-item4-{algoritmo}-{det|rainy}.npz   episódios do item 4
     ├── avaliacao-item4.csv             resumo do item 4
     ├── reward-exato-cenarios.csv       reward esperado exato por cenário
     ├── resumo-final.csv                tabela-resumo final
     └── *.png                           gráficos
 ```
 
-`prefix` é `qlearning-det`, `sarsa-det`, `qlearning-rainy` ou `sarsa-rainy` e indica o ambiente de **treino**.
+`prefix` é `qlearning-det`, `sarsa-det`, `qlearning-rainy` ou `sarsa-rainy` e indica o ambiente de **treino**. Há também `sarsa-det-longo`, o Sarsa com 10.000 episódios do teste de convergência do item 3.
 
-Atenção: os arquivos `.npz` do item 4 seguem outra convenção. Neles, `rainy` indica o ambiente de **teste**, e as q-tables foram treinadas no determinístico. Assim, `avaliacao-qlearning-rainy.npz` (item 4) e `avaliacao-qlearning-rainy.csv` (item 5) têm resultados de experimentos diferentes.
+Nos `.npz` do item 4, `det` e `rainy` indicam o ambiente de **teste**; as q-tables são sempre as treinadas no determinístico.
 
 ## Configuração
 
@@ -69,11 +69,11 @@ Avaliação com a política gulosa, em 500 episódios por cenário. A última co
 |---|---|---|---|---:|---:|---:|
 | Q-learning | Determinístico | Determinístico | 12,94 ± 2,59 | 100,0 % | +8,06 | +7,93 |
 | Sarsa | Determinístico | Determinístico | 13,26 ± 8,76 | 99,8 % | +7,70 | +6,84 |
-| Q-learning | Determinístico | Com chuva | 25,58 ± 14,12 | 99,6 % | −4,67 | −6,65 |
+| Q-learning | Determinístico | Com chuva | 25,58 ± 14,12 | 99,6 % | −4,67 | −6,64 |
 | Sarsa | Determinístico | Com chuva | 28,11 ± 24,70 | 98,2 % | −7,49 | −8,90 |
 | Q-learning | Com chuva | Com chuva | 26,34 ± 17,92 | 99,2 % | −5,51 | −7,33 |
 | Sarsa | Com chuva | Com chuva | 56,24 ± 68,09 | 82,0 % | −39,02 | −55,25 |
 
-- No ambiente determinístico, o Q-learning superou a meta nas cinco execuções e ficou praticamente na política ótima. O Sarsa ficou próximo, mas duas de suas cinco q-tables ficam abaixo de +7,0 no cálculo exato.
+- No ambiente determinístico, o Q-learning superou a meta nas cinco execuções e ficou praticamente na política ótima. O Sarsa ficou próximo, mas duas de suas cinco q-tables ficam abaixo de +7,0 no cálculo exato. Com 10.000 episódios, os ciclos da política gulosa somem e ele chega a +7,93, então é falta de treino.
 - Com chuva, a meta de +7,0 não é alcançável: a política ótima rende −3,96.
 - Treinar diretamente com chuva não gerou política mais robusta com 5000 episódios. O Q-learning empatou com a q-table determinística, e o Sarsa piorou muito, com 18 % dos episódios presos até o limite de passos.

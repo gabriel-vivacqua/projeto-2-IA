@@ -62,7 +62,7 @@ class Sarsa:
                 actions = actions + 1
                 rewards = rewards + reward
 
-                if self.max_steps is not None and actions >= self.max_steps:
+                if truncated or (self.max_steps is not None and actions >= self.max_steps):
                     break
 
             actions_per_episode.append(actions)

@@ -14,6 +14,7 @@ EPSILON = 0.1
 EPSILON_MIN = 0.1
 EPSILON_DEC = 1
 EPISODES = 5000
+EPISODES_LONGO = 10000        # só no teste de convergência do Sarsa (item 3)
 
 # Experimentos
 N_RUNS = 5
